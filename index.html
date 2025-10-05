@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>🧠 Image Metadata Analyzer — File + URL (Client-Side)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🧠 Image Metadata Analyzer</h1>
+  <p class="small">Everything runs locally in your browser — upload an image or paste a URL.  
+  For some URLs, enable the proxy option to bypass CORS restrictions.</p>
+
+  <div class="grid">
+    <div>
+      <div class="card">
+        <div class="row">
+          <input id="fileinput" type="file" accept="image/*,image/heic,image/heif"/>
+          <button id="analyzeBtn">Analyze</button>
+        </div>
+
+        <div class="row" style="margin-top:10px">
+          <button id="stripBtn" disabled>🧹 Strip Metadata → Download Clean</button>
+          <button id="downloadJson" disabled>💾 Download JSON</button>
+        </div>
+
+        <div style="margin-top:14px">
+          <label class="small"><strong>Or paste an image URL:</strong></label>
+          <input id="urlInput" type="text" placeholder="https://example.com/path/to/image.jpg"/>
+          <div class="row" style="margin-top:8px">
+            <label class="opt"><input id="useProxy" type="checkbox"/> Use CORS proxy</label>
+            <input id="proxyPrefix" type="text" value="https://corsproxy.io/?"/>
+          </div>
+          <div class="note">If fetching a URL fails, enable the proxy or download manually.</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:18px;">
+        <strong>📷 Preview</strong>
+        <div id="previewArea" style="margin-top:10px"></div>
+      </div>
+
+      <div class="card" style="margin-top:18px;">
+        <strong>🗺️ Map / Reverse Geocode (Optional)</strong>
+        <div id="mapControls" style="margin-top:10px">
+          <button id="openMap" style="display:none">Open in OpenStreetMap</button>
+          <button id="revGeo" style="display:none">Reverse Geocode</button>
+          <div id="revGeoResult" style="margin-top:8px"></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <strong>🧾 Summary</strong>
+        <div id="summary" style="margin-top:8px">
+          <div class="muted">No analysis yet.</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:18px;">
+        <strong>📜 Raw / Parsed Metadata (JSON)</strong>
+        <pre id="rawmeta">{ }</pre>
+      </div>
+
+      <div class="card" style="margin-top:18px;">
+        <strong>⚙️ Heuristics & Flags</strong>
+        <div id="flags" style="margin-top:8px">
+          <div class="muted">No run yet.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- exifr library -->
+  <script src="https://unpkg.com/exifr/dist/full.umd.js"></script>
+  <script src="script.js"></script>
+
+  <footer style="text-align:center; margin-top:30px; color:#6b7280;">
+  Made with ❤️ by <strong>PAUL HAYKEENS</strong>
+</footer>
+
+</body>
+</html>
